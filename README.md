@@ -38,8 +38,7 @@ The full analysis (CIs, paired tests, error analysis, speed) is in [`reports/mod
 
 ## Dataset
 
-[Oral Diseases dataset on Kaggle]([PASTE_KAGGLE_LINK_HERE](https://www.kaggle.com/datasets/salmansajid05/oral-diseases
-)): 6 classes (Calculus, Caries, Discoloration, Gingivitis, Hypodontia, Mouth_Ulcer). Full credit to the dataset authors.
+[Oral Diseases dataset on Kaggle](PASTE_KAGGLE_LINK_HERE): 6 classes (Calculus, Caries, Discoloration, Gingivitis, Hypodontia, Mouth_Ulcer). Full credit to the dataset authors.
 
 Only the 5,563 original images are used (the augmented copies and the YOLO folder are excluded). A leak-free cleaning and split pipeline was applied:
 
@@ -59,7 +58,7 @@ Five models, same data, augmentation (flip, rotation, zoom, contrast), class wei
 ## Repository structure
 
 ```
-notebooks/   step1 data cleaning + split -> step5 final test evaluation
+notebooks/   step1 data cleaning + split -> step6 saved-model verification
 app/         Gradio web app (app.py, requirements.txt)
 reports/     model comparison report
 ```
@@ -71,6 +70,7 @@ reports/     model comparison report
 | `step3_pretrained_models.ipynb` | ResNet50, EfficientNetB0, MobileNetV2 |
 | `step4_tune_resnet50.ipynb` | Hyperparameter search for ResNet50 |
 | `step5_final_test_evaluation.ipynb` | Test metrics, CIs, error analysis |
+| `step6_verify_saved_model.ipynb` | Reloads the saved `.keras` file and reproduces the test result (accuracy 0.947, macro-F1 0.884) |
 
 ## Run the app
 
@@ -79,8 +79,8 @@ The model file (95 MB) is hosted on Hugging Face because it is too large for the
 **Model:** [mazen-ayad/Oral_Project on Hugging Face](https://huggingface.co/mazen-ayad/Oral_Project)
 
 ```bash
-git clone https://github.com/USERNAME/oral-disease-classifier.git
-cd oral-disease-classifier/app
+git clone https://github.com/Mazen-Ayad/Oral_Project.git
+cd Oral_Project/app
 
 # download the model next to app.py
 curl -L -o ResNet50_tuned_best.keras \
