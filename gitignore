@@ -1,0 +1,21 @@
+# Model weights (hosted on Hugging Face instead)
+*.keras
+*.h5
+
+# Dataset
+data/
+dataset/
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
