@@ -34,16 +34,16 @@ Per-class results of the deployed model (tuned ResNet50) on the test set:
 | Hypodontia | 180 | 0.994 | 0.978 |
 | Mouth_Ulcer | 32 | 0.969 | 0.969 |
 
-The full analysis (CIs, paired tests, error analysis, speed) is in [`reports/model_comparison_report.docx`](reports/model_comparison_report.docx).
+The full analysis (CIs, paired tests, error analysis, speed) is in [`Oral Diseases Classification Model Comparison Report.docx`](Oral%20Diseases%20Classification%20Model%20Comparison%20Report.docx).
 
 ## Dataset
 
-[Oral Diseases dataset on Kaggle](PASTE_KAGGLE_LINK_HERE): 6 classes (Calculus, Caries, Discoloration, Gingivitis, Hypodontia, Mouth_Ulcer). Full credit to the dataset authors.
+[Oral Diseases dataset on Kaggle](https://www.kaggle.com/datasets/salmansajid05/oral-diseases) by salmansajid05: 6 classes (Calculus, Caries, Discoloration, Gingivitis, Hypodontia, Mouth_Ulcer). Full credit to the dataset authors.
 
 Only the 5,563 original images are used (the augmented copies and the YOLO folder are excluded). A leak-free cleaning and split pipeline was applied:
 
-- Exact duplicates (MD5) are removed; a file that appears under several classes is dropped.
-- Near-duplicates are detected with a perceptual hash (pHash, Hamming distance <= 4). Near-duplicates with different labels are dropped; those with the same label are forced into the same split.
+- Exact duplicates (MD5) are removed: 1,510 files that appear under several classes and 546 repeated files inside a class (5,563 down to 3,507).
+- Near-duplicates are detected with a perceptual hash (pHash, Hamming distance <= 4). 6 near-duplicates with conflicting labels are dropped; those with the same label are forced into the same split. Final clean set: 3,501 images.
 - Stratified 70/15/15 split grouped by near-duplicate group: **2,497 train / 498 validation / 506 test**.
 - Class imbalance is handled with class weights.
 
@@ -59,18 +59,18 @@ Five models, same data, augmentation (flip, rotation, zoom, contrast), class wei
 
 ```
 notebooks/   step1 data cleaning + split -> step6 saved-model verification
-app/         Gradio web app (app.py, requirements.txt)
-reports/     model comparison report
+oral_app/    Gradio web app (app.py, requirements.txt)
+*.docx       model comparison report
 ```
 
 | Notebook | Purpose |
 | --- | --- |
-| `step1_data_cleaning_split.ipynb` | Deduplication and leak-free split |
-| `step2_custom_cnn.ipynb` | Custom CNN baseline |
-| `step3_pretrained_models.ipynb` | ResNet50, EfficientNetB0, MobileNetV2 |
-| `step4_tune_resnet50.ipynb` | Hyperparameter search for ResNet50 |
-| `step5_final_test_evaluation.ipynb` | Test metrics, CIs, error analysis |
-| `step6_verify_saved_model.ipynb` | Reloads the saved `.keras` file and reproduces the test result (accuracy 0.947, macro-F1 0.884) |
+| `step1-data-cleaning-split.ipynb` | Deduplication and leak-free split |
+| `step2-custom-cnn.ipynb` | Custom CNN baseline |
+| `step3-pretrained-models.ipynb` | ResNet50, EfficientNetB0, MobileNetV2 |
+| `step4-tune-resnet50.ipynb` | Hyperparameter search for ResNet50 |
+| `step5-final-test-evaluation.ipynb` | Test metrics, CIs, error analysis |
+| `step6.ipynb` | Reloads the saved `.keras` file and reproduces the test result (accuracy 0.947, macro-F1 0.884) |
 
 ## Run the app
 
@@ -80,7 +80,7 @@ The model file (95 MB) is hosted on Hugging Face because it is too large for the
 
 ```bash
 git clone https://github.com/Mazen-Ayad/Oral_Project.git
-cd Oral_Project/app
+cd Oral_Project/oral_app
 
 # download the model next to app.py
 curl -L -o ResNet50_tuned_best.keras \
