@@ -38,7 +38,8 @@ The full analysis (CIs, paired tests, error analysis, speed) is in [`Oral Diseas
 
 ## Dataset
 
-[Oral Diseases dataset on Kaggle](https://www.kaggle.com/datasets/salmansajid05/oral-diseases) by salmansajid05: 6 classes (Calculus, Caries, Discoloration, Gingivitis, Hypodontia, Mouth_Ulcer). Full credit to the dataset authors.
+[Oral Diseases](https://www.kaggle.com/datasets/salmansajid05/oral-diseases) by salmansajid05 on Kaggle.
+Used for educational purposes. Check the dataset page for its license and terms.
 
 Only the 5,563 original images are used (the augmented copies and the YOLO folder are excluded). A leak-free cleaning and split pipeline was applied:
 
