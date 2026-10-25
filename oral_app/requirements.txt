@@ -1,0 +1,6 @@
+tensorflow>=2.16
+gradio>=6.0
+pillow
+numpy
+reportlab
+ 
